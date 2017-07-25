@@ -4,7 +4,6 @@
   "main": "dist/app.js",
   "author": "Julie Ng <julie.ng@allianz.de>",
   "scripts": {
-    "prestart": "npm run compile",
     "start": "node dist/app.js",
     "dev": "concurrently 'npm run server' 'npm run lint:watch' 'PORT=3001 npm run test:watch'",
     "server": "nodemon -w src --exec 'babel-node src/app'",
