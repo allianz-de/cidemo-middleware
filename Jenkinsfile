@@ -10,9 +10,21 @@ pipeline {
     }
 
     parameters {
-        string( name: 'CF_URL',
-                defaultValue: 'https://api.system.dadpo.azd.cloud.allianz',
-                description: 'Cloud Foundry URL')
+        string( name: 'CF_API',
+                defaultValue: 'https://api.local.pcfdev.io',
+                description: 'Cloud Foundry API url')
+
+        string( name: 'CF_BASE_HOST',
+                defaultValue: 'local.pcfdev.io',
+                description: 'Base host for CF apps')
+
+        string( name: 'CF_ORG',
+                defaultValue: 'pcfdev-org',
+                description: 'Cloud Foundry Org')
+
+        string( name: 'CF_SPACE',
+                defaultValue: 'pcfdev-space',
+                description: 'Cloud Foundry Space')
     }
 
     tools {
@@ -39,17 +51,19 @@ pipeline {
         }
 
         stage('Deploy') {
-            when { branch "master" }
+            when { branch 'master' }
             steps {
-                cf (pcfApiUrl: params.CF_URL, credentialsId: 'pcf', space: 'dev') {
-                    sh "cf push"
-                }
-            }
-            post {
-                failure {
-                    hipchatSend room: 'CIDEMO - Notifications',
-                                color: "RED",
-                                message: "Deployment FAILED: ${env.JOB_NAME} ${env.BUILD_NUMBER}"
+                script {
+                    def appName = isFeatureBranch()
+                                ? appNameFromManifest(append: env.BRANCH_NAME)
+                                : appNameFromManifest()
+                    cfPush([
+                        apiUrl: 'https://api.local.pcfdev.io',
+                        org:    'pcfdev-org',
+                        space:  'pcfdev-space',
+                        credentialsId: 'pcf',
+                        skipSSL: true
+                    ])
                 }
             }
         }
