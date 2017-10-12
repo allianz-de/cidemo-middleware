@@ -1,5 +1,5 @@
 #!/usr/bin/env groovy
-@Library('jenkins-pipeline-library') _
+@Library('demo-pipeline-library') _
 
 pipeline {
     agent any
@@ -16,7 +16,7 @@ pipeline {
     }
 
     tools {
-        nodejs 'node-7'
+        nodejs 'node-8'
     }
 
     stages {
