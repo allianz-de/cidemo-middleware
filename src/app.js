@@ -18,6 +18,13 @@ web.post('/api/login', function (req, res) {
   })
 })
 
+web.get('/api/random/history', function (req, res) {
+  res.send({
+    fullname: faker.name.findName(),
+    accountHistory: faker.helpers.createCard().accountHistory,
+  })
+})
+
 web.listen(port, function () {
   console.log(`Listening on port ${port}`)
 })
