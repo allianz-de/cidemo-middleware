@@ -54,7 +54,7 @@ pipeline {
             when { branch 'master' }
             steps {
                 script {
-                    def appName = isFeatureBranch()
+                    String appName = isFeatureBranch()
                                 ? appNameFromManifest(append: env.BRANCH_NAME)
                                 : appNameFromManifest()
                     cfPush([
