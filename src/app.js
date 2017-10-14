@@ -28,5 +28,3 @@ web.get('/api/random/history', function (req, res) {
 web.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`)
 })
-
-export { web as app }
