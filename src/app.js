@@ -3,7 +3,7 @@ import express from 'express'
 import faker from 'faker'
 
 let web = express()
-const port = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000
 
 web.use(bodyParser.json({ limit: '50mb' }))
 web.use(bodyParser.urlencoded({ extended: false }))
@@ -25,8 +25,8 @@ web.get('/api/random/history', function (req, res) {
   })
 })
 
-web.listen(port, function () {
-  console.log(`Listening on port ${port}`)
+web.listen(PORT, function () {
+  console.log(`Listening on port ${PORT}`)
 })
 
 export { web as app }
