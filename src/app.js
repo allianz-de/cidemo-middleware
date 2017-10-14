@@ -5,6 +5,8 @@ import faker from 'faker'
 let web = express()
 const PORT = process.env.PORT || 3000
 
+web.all('*', logRequests)
+
 web.use(bodyParser.json({ limit: '50mb' }))
 web.use(bodyParser.urlencoded({ extended: false }))
 
@@ -28,3 +30,10 @@ web.get('/api/random/history', function (req, res) {
 web.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`)
 })
+
+function logRequests (req, res, next) {
+  if (process.env.NODE_ENV !== 'test') {
+    console.log(`${req.method} ${req.path}`, req.body)
+  }
+  next()
+}
