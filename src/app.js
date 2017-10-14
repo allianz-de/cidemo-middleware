@@ -4,7 +4,7 @@ import faker from 'faker'
 import proxy from 'http-proxy-middleware'
 
 const PORT = process.env.PORT || 3000
-const LOGIN_API = process.env.LOGIN_API
+const LOGIN_API = process.env.LOGIN_API || 'http://placeholder/'
 
 let web = express()
 web.all('*', logRequests)
