@@ -12,9 +12,6 @@ web.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`)
 })
 
-web.use(bodyParser.json({ limit: '50mb' }))
-web.use(bodyParser.urlencoded({ extended: false }))
-
 //-- Public Routes
 
 web.get('/', function (req, res) {
@@ -31,6 +28,11 @@ web.get('/api/random/history', function (req, res) {
 // -- Proxies
 
 web.use('/api/login', proxy({ target: LOGIN_API }))
+
+// -- MUST load 'body-parser' after proxies
+
+web.use(bodyParser.json({ limit: '50mb' }))
+web.use(bodyParser.urlencoded({ extended: false }))
 
 function logRequests (req, res, next) {
   if (process.env.NODE_ENV !== 'test') {
