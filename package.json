@@ -1,6 +1,6 @@
 {
-  "name": "node-starter",
-  "version": "0.3.0",
+  "name": "cidemo-middleware",
+  "version": "0.1.0",
   "main": "dist/app.js",
   "author": "Julie Ng <julie.ng@allianz.de>",
   "scripts": {
