@@ -12,7 +12,7 @@ web.listen(PORT, function () {
   console.log(`Listening on port ${PORT}`)
 })
 
-//-- Public Routes
+// -- Public Routes
 
 web.get('/', function (req, res) {
   res.send('Hello World!')
