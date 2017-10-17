@@ -3,6 +3,12 @@
   "version": "0.1.0",
   "main": "dist/app.js",
   "author": "Julie Ng <julie.ng@allianz.de>",
+  "license": "MIT",
+  "description": "NodeJS middleware for continuous integration demo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AllianzDeutschlandAG/cidemo-middleware"
+  },
   "scripts": {
     "start": "node dist/app.js",
     "dev": "concurrently 'npm run server' 'npm run lint:watch' 'PORT=3001 npm run test:watch'",
