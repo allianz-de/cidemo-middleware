@@ -51,13 +51,18 @@ pipeline {
         }
 
         stage('Deploy') {
-            when { branch 'master' }
+            when {
+                expression {
+                    return isFeatureBranch() || env.BRANCH_NAME == 'master'
+                }
+            }
             steps {
                 script {
                     String appName = isFeatureBranch()
                                 ? appNameFromManifest(append: env.BRANCH_NAME)
                                 : appNameFromManifest()
                     cfPush([
+                        appName: appName,
                         apiUrl: 'https://api.local.pcfdev.io',
                         org:    'pcfdev-org',
                         space:  'pcfdev-space',
