@@ -44,6 +44,18 @@ pipeline {
             }
         }
 
+        stage('Lint') {
+            steps {
+                sh 'npm run lint'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'npm run test'
+            }
+        }
+
         stage('Compile') {
             steps {
                 sh 'npm run compile'
