@@ -1,6 +1,5 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import faker from 'faker';
 import proxy from 'http-proxy-middleware';
 
 const PORT = process.env.PORT || 3000;
@@ -16,13 +15,6 @@ web.listen(PORT, function () {
 
 web.get('/', function (req, res) {
   res.send('Hello World!');
-});
-
-web.get('/api/random/history', function (req, res) {
-  res.send({
-    fullname: faker.name.findName(),
-    accountHistory: faker.helpers.createCard().accountHistory,
-  });
 });
 
 // -- Proxies

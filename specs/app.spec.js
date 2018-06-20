@@ -29,19 +29,6 @@ describe ('app', () => {
       xit ('returns 200 status');
     });
   });
-
-  describe ('GET /api/random/history', () => {
-    it ('returns json', (done) => {
-      request.get(url('/api/random/history'), (error, response, body) => {
-        expect(response.statusCode).toBe(200);
-
-        let json = JSON.parse(response.body);
-        expect(json.fullname).toBeDefined();
-        expect(json.accountHistory).toBeDefined();
-        done();
-      });
-    });
-  });
 });
 
 function url (path = '') {
