@@ -11,11 +11,11 @@ pipeline {
 
     parameters {
         string( name: 'CF_API',
-                defaultValue: 'https://api.local.pcfdev.io',
+                defaultValue: 'https://api.run.pivotal.io',
                 description: 'Cloud Foundry API url')
 
         string( name: 'CF_BASE_HOST',
-                defaultValue: 'local.pcfdev.io',
+                defaultValue: 'cfapps.io',
                 description: 'Base host for CF apps')
 
         string( name: 'CF_ORG',
