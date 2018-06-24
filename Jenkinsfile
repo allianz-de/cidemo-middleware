@@ -19,12 +19,12 @@ pipeline {
                 description: 'Base host for CF apps')
 
         string( name: 'CF_ORG',
-                defaultValue: 'pcfdev-org',
-                description: 'Cloud Foundry Org')
+                defaultValue: 'azd-cidemo',
+                description: 'PCF Organization')
 
         string( name: 'CF_SPACE',
-                defaultValue: 'pcfdev-space',
-                description: 'Cloud Foundry Space')
+                defaultValue: 'development',
+                description: 'PCF Space')
     }
 
     tools {
@@ -73,13 +73,13 @@ pipeline {
                     String appName = isFeatureBranch()
                                 ? appNameFromManifest(append: env.BRANCH_NAME)
                                 : appNameFromManifest()
+
                     cfPush([
                         appName: appName,
-                        apiUrl: 'https://api.local.pcfdev.io',
-                        org:    'pcfdev-org',
-                        space:  'pcfdev-space',
-                        credentialsId: 'pcf',
-                        skipSSL: true
+                        apiUrl: params.CF_API,
+                        org:    params.CF_ORG,
+                        space:  params.CF_SPACE,
+                        credentialsId: 'pcf'
                     ])
                 }
             }
